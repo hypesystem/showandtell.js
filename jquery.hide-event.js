@@ -47,19 +47,17 @@
     var old_function = $.fn.css;
     
     $.fn.css = function() {
-        this.each(function() {
-            //Case: display: none;
-            if(arguments[0] == "display" && arguments[1] == "none")
-                this.trigger("hide.css.display");
+        //Case: display: none;
+        if(arguments[0] == "display" && arguments[1] == "none")
+            this.trigger("hide.css.display");
+        
+        //Case: visibility: hidden;
+        if(arguments[0] == "visibility" && arguments[1] == "hidden")
+            this.trigger("hide.css.visibility");
             
-            //Case: visibility: hidden;
-            if(arguments[0] == "visibility" && arguments[1] == "hidden")
-                this.trigger("hide.css.visibility");
-                
-            //Case: opacity: 0;
-            if(arguments[0] == "opacity" && arguments[1] == 0)
-                this.trigger("hide.css.opacity");
-        });
+        //Case: opacity: 0;
+        if(arguments[0] == "opacity" && arguments[1] == 0)
+            this.trigger("hide.css.opacity");
             
         //Call old function
         old_function.apply(this, arguments);
