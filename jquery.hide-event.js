@@ -4,7 +4,7 @@
  *     css (display, visibility, opacity).
  * When a hide `h` is called, the event "hide.h" is triggered. For example, your object may receive
  * the event "hide.fadeOut", if a user has called .fadeOut() on it.
- * TODO: Animate css properties
+ * TODO: Animate toggle
  * TODO: Setting of the style attribute
  * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
  * TODO: Consider Mutation Observer https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
@@ -13,7 +13,7 @@
  */
 (function ($) {
     //jQuery hide functions
-    $.each(['hide','fadeOut','slideUp','remove'], function(i, event) {
+    $.each(['hide','remove'], function(i, event) {
         var old_function = $.fn[event];
         
         //Overwrite with new function
@@ -42,6 +42,23 @@
             old_function.apply(this, arguments);
         };
     });
+    
+    //jQuery animate properties
+    var old_animate = $.fn.animate;
+    
+    $.fn.animate = function() {
+        var prop = arguments[0];
+        //If animating to invisible it is fading out.
+        if("opacity" in prop && (prop.opacity == "hide" || prop.opacity == 0))
+            this.trigger("hide.fade.animate");
+        
+        //If animating to move out of frame (slideUp)
+        //Properties are: { height: hide, margin-top: hide, padding-top: hide }
+        if("height" in prop && (prop.height == "hide" || prop.height == 0))
+            this.trigger("hide.slide.animate");
+            
+        old_animate.apply(this, arguments);
+    };
     
     //jQuery set css properties
     var old_function = $.fn.css;
