@@ -9,7 +9,7 @@
  * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
  * TODO: Consider Mutation Observer https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
  * TODO: Figure out if http://weblog.west-wind.com/posts/2008/Sep/12/jQuery-CSS-Property-Monitoring-Plugin-updated
- *     is an alernative.
+ *     is an alernative. (Project seems to be closed, maybe rewrite?)
  */
 (function ($) {
     //jQuery hide functions
@@ -32,9 +32,11 @@
         
         //Overwrite with new function
         $.fn[event] = function() {
-            //If event is currently shown it is being hidden
-            if(this.css('display') != "none")
-                this.trigger("hide."+event);
+            this.each(function() {
+                //If event is currently shown it is being hidden
+                if(this.css('display') != "none")
+                    this.trigger("hide."+event);
+            });
             
             //Call old function
             old_function.apply(this, arguments);
@@ -45,17 +47,19 @@
     var old_function = $.fn.css;
     
     $.fn.css = function() {
-        //Case: display: none;
-        if(arguments[0] == "display" && arguments[1] == "none")
-            this.trigger("hide.css.display");
-        
-        //Case: visibility: hidden;
-        if(arguments[0] == "visibility" && arguments[1] == "hidden")
-            this.trigger("hide.css.visibility");
+        this.each(function() {
+            //Case: display: none;
+            if(arguments[0] == "display" && arguments[1] == "none")
+                this.trigger("hide.css.display");
             
-        //Case: opacity: 0;
-        if(arguments[0] == "opacity" && arguments[1] == 0)
-            this.trigger("hide.css.opacity");
+            //Case: visibility: hidden;
+            if(arguments[0] == "visibility" && arguments[1] == "hidden")
+                this.trigger("hide.css.visibility");
+                
+            //Case: opacity: 0;
+            if(arguments[0] == "opacity" && arguments[1] == 0)
+                this.trigger("hide.css.opacity");
+        });
             
         //Call old function
         old_function.apply(this, arguments);
