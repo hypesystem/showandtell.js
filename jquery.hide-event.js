@@ -8,6 +8,8 @@
  * TODO: Setting of the style attribute
  * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
  * TODO: Consider Mutation Observer https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+ * TODO: Figure out if http://weblog.west-wind.com/posts/2008/Sep/12/jQuery-CSS-Property-Monitoring-Plugin-updated
+ *     is an alernative.
  */
 (function ($) {
     //jQuery hide functions
