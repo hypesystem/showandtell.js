@@ -1,9 +1,10 @@
 /**
  * jquery.hide-event.js
  * Currently supported hides: hide, fadeOut, slideUp, remove, toggle, fadeToggle, slideToggle,
- *     css (display, visibility, opacity).
- * When a hide `h` is called, the event "hide.h" is triggered. For example, your object may receive
- * the event "hide.fadeOut", if a user has called .fadeOut() on it.
+ *     css (display, visibility, opacity), animate (height, opacity).
+ * When a hide `h` is called, the event "hide" is triggered, with the additional parameter ["h"]. For example,
+ * your object may receive the event "hide" with the 1st parameter being ["fade","animate"], if a user has
+ * called .fadeOut() on it.
  * TODO: Animate toggle
  * TODO: Setting of the style attribute
  * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
@@ -19,7 +20,7 @@
         //Overwrite with new function
         $.fn[event] = function () {
             //Trigger event
-            this.trigger("hide."+event);
+            this.trigger("hide",[event]);
             
             //Call old function
             old_function.apply(this, arguments);
@@ -27,7 +28,7 @@
     });
       
     //jQuery toggle functions
-    $.each(['toggle','fadeToggle','slideToggle'], function(i, event) {
+    $.each(['toggle'], function(i, event) {
         var old_function = $.fn[event];
         
         //Overwrite with new function
@@ -35,7 +36,7 @@
             this.each(function() {
                 //If event is currently shown it is being hidden
                 if(this.css('display') != "none")
-                    this.trigger("hide."+event);
+                    this.trigger("hide",event);
             });
             
             //Call old function
@@ -50,12 +51,12 @@
         var prop = arguments[0];
         //If animating to invisible it is fading out.
         if("opacity" in prop && (prop.opacity == "hide" || prop.opacity == 0))
-            this.trigger("hide.fade.animate");
+            this.trigger("hide",["fade","animate","opacity","css"]);
         
         //If animating to move out of frame (slideUp)
         //Properties are: { height: hide, margin-top: hide, padding-top: hide }
         if("height" in prop && (prop.height == "hide" || prop.height == 0))
-            this.trigger("hide.slide.animate");
+            this.trigger("hide",["slide","animate","height","css"]);
             
         old_animate.apply(this, arguments);
     };
@@ -66,15 +67,15 @@
     $.fn.css = function() {
         //Case: display: none;
         if(arguments[0] == "display" && arguments[1] == "none")
-            this.trigger("hide.css.display");
+            this.trigger("hide",["css","display"]);
         
         //Case: visibility: hidden;
         if(arguments[0] == "visibility" && arguments[1] == "hidden")
-            this.trigger("hide.css.visibility");
+            this.trigger("hide",["css","visibility"]);
             
         //Case: opacity: 0;
         if(arguments[0] == "opacity" && arguments[1] == 0)
-            this.trigger("hide.css.opacity");
+            this.trigger("hide",["css","opacity"]);
             
         //Call old function
         old_function.apply(this, arguments);
