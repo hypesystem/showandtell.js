@@ -1,8 +1,3 @@
-/**
- * Testing built-in shorthands for hiding.
- * 2014-01-15 all tests pass
- */
-
 QUnit.test("Hide Test", function(assert) {
   expect(2);
   $("<div></div>")

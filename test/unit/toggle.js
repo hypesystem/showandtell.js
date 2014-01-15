@@ -1,24 +1,19 @@
-/**
- * Testing show-toggles.
- * 0 tests pass
- */
-
 QUnit.test("Toggle off test", function(assert) {
-  expect(3);
+  expect(2);
   $("<div></div>")
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
       notEqual($.inArray("hide",t),-1, "Hide specified");
-      notEqual($.inArray("toggle",t),-1, "Toggle specified");
     })
     .toggle();
 });
 
 QUnit.test("Toggle on test (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
-    .hide()
+  $('<div style="display: none;"></div>')
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event shoudln't have triggered");
     })

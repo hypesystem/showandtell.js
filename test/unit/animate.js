@@ -1,8 +1,3 @@
-/**
- * Testing the .animate(...) calls
- * Some tests pass.
- */
-
 QUnit.test("Animate height 0", function(assert) {
   expect(4);
   $("<div></div>")

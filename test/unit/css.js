@@ -1,8 +1,3 @@
-/**
- * Testing setting of CSS
- * 2014-01-15 all tests pass
- */
-
 QUnit.test("CSS display none; test display hide", function(assert) {
   expect(3);
   $("<div></div>")

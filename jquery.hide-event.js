@@ -1,7 +1,7 @@
 /**
  * jquery.hide-event.js
  * Currently supported hides: hide, fadeOut, slideUp, remove, toggle, fadeToggle, slideToggle,
- *     css (display, visibility, opacity), animate (height, opacity).
+ *     css (display, opacity), animate (height, opacity).
  * When a hide `h` is called, the event "hide" is triggered, with the additional parameter ["h"]. For example,
  * your object may receive the event "hide" with the 1st parameter being ["fade","animate"], if a user has
  * called .fadeOut() on it.
@@ -32,19 +32,6 @@
     //jQuery toggle functions
     var old_toggle = $.fn.toggle;
     
-    //Overwrite with new function
-    $.fn.toggle = function() {
-        this.each(function() {
-            var $this = $(this);
-            //If event is currently shown it is being hidden
-            if($this.css('display') != "none")
-                $this.trigger("hide",["toggle","hide"]);
-        });
-        
-        //Call old function
-        old_toggle.apply(this, arguments);
-    };
-    
     //jQuery animate properties
     var old_animate = $.fn.animate;
     
@@ -69,10 +56,6 @@
         //Case: display: none;
         if(arguments[0] == "display" && arguments[1] == "none")
             this.trigger("hide",["css","display"]);
-        
-        //Case: visibility: hidden;
-        if(arguments[0] == "visibility" && arguments[1] == "hidden")
-            this.trigger("hide",["css","visibility"]);
             
         //Case: opacity: 0;
         if(arguments[0] == "opacity" && arguments[1] == 0)
