@@ -23,6 +23,7 @@ QUnit.test("Toggle on test (no event)", function(assert) {
 QUnit.test("FadeToggle off test", function(assert) {
   expect(5);
   $("<div></div>")
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -36,8 +37,8 @@ QUnit.test("FadeToggle off test", function(assert) {
 
 QUnit.test("FadeToggle on test (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
-    .hide()
+  $('<div style="display: none;"></div>')
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
@@ -47,6 +48,7 @@ QUnit.test("FadeToggle on test (no event)", function(assert) {
 QUnit.test("SlideToggle off test", function(assert) {
   expect(5);
   $("<div></div>")
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -60,8 +62,8 @@ QUnit.test("SlideToggle off test", function(assert) {
 
 QUnit.test("SlideToggle on test (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
-    .hide()
+  $('<div style="display: none;"></div>')
+    .appendTo("body")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
