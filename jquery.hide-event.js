@@ -30,21 +30,20 @@
     });
       
     //jQuery toggle functions
-    $.each(['toggle'], function(i, event) {
-        var old_function = $.fn[event];
+    var old_toggle = $.fn.toggle;
+    
+    //Overwrite with new function
+    $.fn.toggle = function() {
+        this.each(function() {
+            var $this = $(this);
+            //If event is currently shown it is being hidden
+            if($this.css('display') != "none")
+                $this.trigger("hide",["toggle","hide"]);
+        });
         
-        //Overwrite with new function
-        $.fn[event] = function() {
-            this.each(function() {
-                //If event is currently shown it is being hidden
-                if(this.css('display') != "none")
-                    this.trigger("hide",event);
-            });
-            
-            //Call old function
-            old_function.apply(this, arguments);
-        };
-    });
+        //Call old function
+        old_toggle.apply(this, arguments);
+    };
     
     //jQuery animate properties
     var old_animate = $.fn.animate;
