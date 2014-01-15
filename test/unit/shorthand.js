@@ -1,6 +1,7 @@
 QUnit.test("Hide Test", function(assert) {
   expect(2);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       //Event triggered!
       ok(true, "Event triggered");
@@ -15,6 +16,7 @@ QUnit.test("Hide Test", function(assert) {
 QUnit.test("FadeOut Test", function(assert) {
   expect(5);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -29,6 +31,7 @@ QUnit.test("FadeOut Test", function(assert) {
 QUnit.test("SlideUp Test", function(assert) {
   expect(5);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -43,6 +46,7 @@ QUnit.test("SlideUp Test", function(assert) {
 QUnit.test("Remove Test", function(assert) {
   expect(2);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);

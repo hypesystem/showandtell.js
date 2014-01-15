@@ -1,6 +1,7 @@
 QUnit.test("CSS display none; test display hide", function(assert) {
   expect(3);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -13,6 +14,7 @@ QUnit.test("CSS display none; test display hide", function(assert) {
 QUnit.test("CSS display static (no event); test other display case", function(assert) {
   expect(0);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
     })
@@ -22,6 +24,7 @@ QUnit.test("CSS display static (no event); test other display case", function(as
 QUnit.test("CSS visibility hidden; test visibility hide", function(assert) {
   expect(3);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -34,6 +37,7 @@ QUnit.test("CSS visibility hidden; test visibility hide", function(assert) {
 QUnit.test("CSS visibility visible (no event); test other visibility case", function(assert) {
   expect(0);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
@@ -43,6 +47,7 @@ QUnit.test("CSS visibility visible (no event); test other visibility case", func
 QUnit.test("CSS opacity 0; test opacity hide case", function(assert) {
   expect(3);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -55,6 +60,7 @@ QUnit.test("CSS opacity 0; test opacity hide case", function(assert) {
 QUnit.test("CSS opacity 0 string; test string input number", function(assert) {
   expect(3);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -67,6 +73,7 @@ QUnit.test("CSS opacity 0 string; test string input number", function(assert) {
 QUnit.test("CSS opacity 0.3 (no event); test other opacity", function(assert) {
   expect(0);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
@@ -76,6 +83,7 @@ QUnit.test("CSS opacity 0.3 (no event); test other opacity", function(assert) {
 QUnit.test("CSS color red (no event); test other css case", function(assert) {
   expect(0);
   $("<div></div>")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
