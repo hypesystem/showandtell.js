@@ -1,56 +1,50 @@
-QUnit.test("Hide Test", function(assert) {
-  expect(2);
+QUnit.test("hide Test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       //Event triggered!
       ok(true, "Event triggered");
       
-      //Check that "hide" type is contained
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("hide",t),-1, "Hide specified");
+      //Check that action and fatality is contained correctly
+      equal(e_args.type, "action", "hide() is an action");
+      equal(e_args.fatal, false, "hide() is non-fatal (does not remove element)");
     })
     .hide();
 });
 
-QUnit.test("FadeOut Test", function(assert) {
-  expect(5);
+QUnit.asyncTest("fadeOut Test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("fade",t),-1, "Fade specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
-      notEqual($.inArray("opacity",t),-1, "Opacity specified");
-      notEqual($.inArray("css",t),-1, "Css specified");
+      equal(e_args.type, "action", "fadeOut() is an action");
+      equal(e_args.fatal, false, "fadeOut() does not destroy element");
     })
-    .fadeOut();
+    .fadeOut(start);
 });
 
-QUnit.test("SlideUp Test", function(assert) {
-  expect(5);
+QUnit.asyncTest("slideUp Test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("height",t),-1, "Fade specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
-      notEqual($.inArray("slide",t),-1, "Opacity specified");
-      notEqual($.inArray("css",t),-1, "Css specified");
+      equal(e_args.type, "action", "slideUp() is an action");
+      equal(e_args.fatal, false, "slideUp() does not destroy element");
     })
-    .slideUp();
+    .slideUp(start);
 });
 
-QUnit.test("Remove Test", function(assert) {
-  expect(2);
+QUnit.test("remove Test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("remove",t),-1, "Remove specified");
+      equal(e_args.type, "action", "remove() is an action");
+      equal(e_args.fatal, true, "remove() destroys element");
     })
     .remove();
 });

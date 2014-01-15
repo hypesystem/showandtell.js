@@ -1,71 +1,65 @@
-QUnit.test("Toggle off test", function(assert) {
-  expect(2);
+QUnit.test("toggle off test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("hide",t),-1, "Hide specified");
+      equal(e_args.type, "action", "toggle() is an action");
+      equal(e_args.fatal, false, "toggle() does not destroy element");
     })
     .toggle();
 });
 
-QUnit.test("Toggle on test (no event)", function(assert) {
+QUnit.test("toggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
-      ok(true, "Event shoudln't have triggered");
+      ok(false, "Event shoudln't have triggered");
     })
     .toggle();
 });
 
-QUnit.asyncTest("FadeToggle off test", function(assert) {
-  expect(5);
+QUnit.asyncTest("fadeToggle off test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("fade",t),-1, "Fade specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
-      notEqual($.inArray("opacity",t),-1, "Opacity specified");
-      notEqual($.inArray("css",t),-1, "Css specified");
+      equal(e_args.type, "action", "fadeToggle() is an action");
+      equal(e_args.fatal, false, "fadeToggle() does not destroy element");
     })
-    .fadeToggle(function() { start(); });
+    .fadeToggle(start);
 });
 
-QUnit.asyncTest("FadeToggle on test (no event)", function(assert) {
+QUnit.asyncTest("fadeToggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
-      ok(true, "Event shouldn't have triggered");
+      ok(false, "Event shouldn't have triggered");
     })
-    .fadeToggle(function() { start(); });
+    .fadeToggle(start);
 });
 
-QUnit.asyncTest("SlideToggle off test", function(assert) {
-  expect(5);
+QUnit.asyncTest("slideToggle off test", function(assert) {
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("height",t),-1, "Fade specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
-      notEqual($.inArray("slide",t),-1, "Opacity specified");
-      notEqual($.inArray("css",t),-1, "Css specified");
+      equal(e_args.type, "action", "slideToggle() is an action");
+      equal(e_args.fatal, false, "slideToggle() does not destroy element");
     })
-    .slideToggle(function() { start(); });
+    .slideToggle(start);
 });
 
-QUnit.asyncTest("SlideToggle on test (no event)", function(assert) {
+QUnit.asyncTest("slideToggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
-      ok(true, "Event shouldn't have triggered");
+      ok(false, "Event shouldn't have triggered");
     })
-    .slideToggle(function() { start(); });
+    .slideToggle(start);
 });

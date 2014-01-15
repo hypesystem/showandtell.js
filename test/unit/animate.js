@@ -1,115 +1,89 @@
-QUnit.asyncTest("Animate height 0", function(assert) {
-  expect(4);
+QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
+  expect(0);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
-      ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("height",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
+      ok(false, "Event shouldn't have been triggered");
     })
-    .animate({ height: 0 }, function() { start(); });
+    .animate({ height: 0 }, start);
 });
            
 QUnit.asyncTest("Animate height hide", function(assert) {
-  expect(4);
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("height",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
+      equal(e_args.type, "action", "height hide is an action");
+      equal(e_args.fatal, false, "height hide does not destroy element");
     })
-    .animate({ height: "hide" }, function() { start(); });
+    .animate({ height: "hide" }, start);
 });
 
 QUnit.asyncTest("Animate height toggle off", function(assert) {
-  expect(4);
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("height",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
+      equal(e_args.type, "action", "height toggle off is an action");
+      equal(e_args.fatal, false, "height toggle off does not destroy element");
     })
-    .animate({ height: "toggle" }, function() { start(); });
+    .animate({ height: "toggle" }, start);
 });
 
 QUnit.asyncTest("Animate height toggle on (no event)", function(assert) {
   expect(0);
-  $('<div style="height: 0;"></div>')
+  $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
-      ok(true, "Event shouldn't have been triggered");
+    .bind('hide', function(event, e_args) {
+      ok(true, "Event shouldn't have been triggered!");
     })
-    .animate({ height: "toggle" }, function() { start(); });
+    .animate({ height: "toggle" }, start);
 });
 
-QUnit.asyncTest("Animate height 5 (no event)", function(assert) {
+QUnit.asyncTest("Animate opacity 0 (no event)", function(assert) {
   expect(0);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
-      ok(true, "Event shouldn't have been triggered");
+      ok(true, "Event shouldn't have been triggered!");
     })
-    .animate({ height: 5 }, function() { start(); });
-});
-
-QUnit.asyncTest("Animate opacity 0", function(assert) {
-  expect(4);
-  $("<div></div>")
-    .appendTo("#qunit-fixture")
-    .bind('hide', function() {
-      ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("opacity",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
-    })
-    .animate({ opacity: 0 }, function() { start(); });
+    .animate({ opacity: 0 }, start);
 });
            
 QUnit.asyncTest("Animate opacity hide", function(assert) {
-  expect(4);
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("opacity",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
+      equal(e_args.type, "action", "opacity hide is an action");
+      equal(e_args.fatal, false, "opacity hide does not destroy element");
     })
-    .animate({ opacity: "hide" }, function() { start(); });
+    .animate({ opacity: "hide" }, start);
 });
 
 QUnit.asyncTest("Animate opacity toggle off", function(assert) {
-  expect(4);
+  expect(3);
   $("<div></div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function() {
+    .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("css",t),-1, "Css specified");
-      notEqual($.inArray("opacity",t),-1, "Height specified");
-      notEqual($.inArray("animate",t),-1, "Animate specified");
+      equal(e_args.type, "action", "opacity toggle off is an action");
+      equal(e_args.fatal, false, "opacity toggle off does not destroy element");
     })
-    .animate({ opacity: "toggle" }, function() { start(); });
+    .animate({ opacity: "toggle" }, start);
 });
 
 QUnit.asyncTest("Animate opacity toggle on (no event)", function(assert) {
   expect(0);
-  $('<div style="opacity: 0;"></div>')
+  $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have been triggered");
     })
-    .animate({ opacity: "toggle" }, function() { start(); });
+    .animate({ opacity: "toggle" }, start);
 });
 
 QUnit.asyncTest("Animate opacity 0.3 (no event)", function(assert) {
@@ -119,15 +93,5 @@ QUnit.asyncTest("Animate opacity 0.3 (no event)", function(assert) {
     .bind('hide', function() {
       ok(true, "Event shouldn't have been triggered");
     })
-    .animate({ opacity: 0.3 }, function() { start(); });
-});
-
-QUnit.asyncTest("Animate color red (no event); test other animate", function(assert) {
-  expect(0);
-  $("<div></div>")
-    .appendTo("#qunit-fixture")
-    .bind('hide', function() {
-      ok(true, "Event shouldn't have been triggered");
-    })
-    .animate({ color: "red" }, function() { start(); });
+    .animate({ opacity: 0.3 }, start);
 });
