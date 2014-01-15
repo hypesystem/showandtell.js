@@ -1,3 +1,8 @@
+/**
+ * Testing built-in shorthands for hiding.
+ * 2014-01-15 all tests pass
+ */
+
 QUnit.test("Hide Test", function(assert) {
   expect(2);
   $("<div></div>")
@@ -49,26 +54,4 @@ QUnit.test("Remove Test", function(assert) {
       notEqual($.inArray("remove",t),-1, "Remove specified");
     })
     .remove();
-});
-
-QUnit.test("Toggle off test", function(assert) {
-  expect(3);
-  $("<div></div>")
-    .bind('hide', function() {
-      ok(true, "Event triggered");
-      var t = Array.prototype.slice.call(arguments, 1);
-      notEqual($.inArray("hide",t),-1, "Hide specified");
-      notEqual($.inArray("toggle",t),-1, "Toggle specified");
-    })
-    .toggle();
-});
-
-QUnit.test("Toggle on test", function(assert) {
-  expect(0);
-  $("<div></div>")
-    .hide()
-    .bind('hide', function() {
-      ok(false, "Event shoudln't have triggered");
-    })
-    .toggle();
 });

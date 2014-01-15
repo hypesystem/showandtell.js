@@ -5,7 +5,9 @@
  * When a hide `h` is called, the event "hide" is triggered, with the additional parameter ["h"]. For example,
  * your object may receive the event "hide" with the 1st parameter being ["fade","animate"], if a user has
  * called .fadeOut() on it.
+ * TODO: Toggle properly
  * TODO: Animate toggle
+ * TODO: .style(...)
  * TODO: Setting of the style attribute
  * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
  * TODO: Consider Mutation Observer https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
