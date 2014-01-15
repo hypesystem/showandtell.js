@@ -1,7 +1,7 @@
 QUnit.test("Toggle off test", function(assert) {
   expect(2);
   $("<div></div>")
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -13,17 +13,17 @@ QUnit.test("Toggle off test", function(assert) {
 QUnit.test("Toggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shoudln't have triggered");
     })
     .toggle();
 });
 
-QUnit.test("FadeToggle off test", function(assert) {
+QUnit.asyncTest("FadeToggle off test", function(assert) {
   expect(5);
   $("<div></div>")
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -32,23 +32,23 @@ QUnit.test("FadeToggle off test", function(assert) {
       notEqual($.inArray("opacity",t),-1, "Opacity specified");
       notEqual($.inArray("css",t),-1, "Css specified");
     })
-    .fadeToggle();
+    .fadeToggle(function() { start(); });
 });
 
-QUnit.test("FadeToggle on test (no event)", function(assert) {
+QUnit.asyncTest("FadeToggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
-    .fadeToggle();
+    .fadeToggle(function() { start(); });
 });
 
-QUnit.test("SlideToggle off test", function(assert) {
+QUnit.asyncTest("SlideToggle off test", function(assert) {
   expect(5);
   $("<div></div>")
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event triggered");
       var t = Array.prototype.slice.call(arguments, 1);
@@ -57,15 +57,15 @@ QUnit.test("SlideToggle off test", function(assert) {
       notEqual($.inArray("slide",t),-1, "Opacity specified");
       notEqual($.inArray("css",t),-1, "Css specified");
     })
-    .slideToggle();
+    .slideToggle(function() { start(); });
 });
 
-QUnit.test("SlideToggle on test (no event)", function(assert) {
+QUnit.asyncTest("SlideToggle on test (no event)", function(assert) {
   expect(0);
   $('<div style="display: none;"></div>')
-    .appendTo("body")
+    .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(true, "Event shouldn't have triggered");
     })
-    .slideToggle();
+    .slideToggle(function() { start(); });
 });
