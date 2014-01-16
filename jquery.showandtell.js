@@ -17,7 +17,7 @@
         var old_function = $.fn[event];
         
         //Overwrite with new function
-        $.fn[event] = function () {
+        $.fn[event] = function() {
             //Trigger event
             this.trigger("hide",{
                 type: "action",
@@ -29,15 +29,30 @@
         };
     });
     
+    var old_show = $.fn.show;
+    
+    $.fn.show = function() {
+        this.trigger("show",{
+            type: "action"
+        });
+        
+        return old_show.apply(this, arguments);
+    };
+    
     //jQuery set css properties
     var old_css = $.fn.css;
     
     $.fn.css = function() {
         //Case: display: none;
-        if(arguments[0] == "display" && arguments[1] == "none")
+        if(arguments[0] == "display" && !$(this).is(":hidden") && arguments[1] == "none")
             $(this).trigger("hide",{
                 type: "css",
                 fatal: false
+            });
+            
+        if(arguments[0] == "display" && $(this).is(":hidden") && arguments[1] != "none")
+            $(this).trigger("show",{
+                type: "css"
             });
             
         //Call old function
