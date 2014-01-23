@@ -18,14 +18,17 @@
         
         //Overwrite with new function
         $.fn[event] = function() {
+            var was_hidden = $(this).is(":hidden");
+        
             //Call old function
             var result = old_function.apply(this, arguments);
         
             //Trigger event
-            this.trigger("hide",{
-                type: "action",
-                fatal: (event == "remove")
-            });
+            if(!was_hidden)
+                this.trigger("hide",{
+                    type: "action",
+                    fatal: (event == "remove")
+                });
             
             //Return
             return result;
@@ -35,11 +38,14 @@
     var old_show = $.fn.show;
     
     $.fn.show = function() {
+        var was_hidden = $(this).is(":hidden");
+    
         var result = old_show.apply(this, arguments);
         
-        this.trigger("show",{
-            type: "action"
-        });
+        if(was_hidden)
+            this.trigger("show",{
+                type: "action"
+            });
         
         return result;
     };

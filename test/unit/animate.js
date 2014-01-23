@@ -1,6 +1,6 @@
 QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have been triggered");
@@ -13,7 +13,7 @@ QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
            
 QUnit.asyncTest("Animate height hide (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -29,7 +29,7 @@ QUnit.asyncTest("Animate height hide (hide)", function(assert) {
 
 QUnit.asyncTest("Animate height show (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -44,7 +44,7 @@ QUnit.asyncTest("Animate height show (show)", function(assert) {
 
 QUnit.asyncTest("Animate height toggle off (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -60,7 +60,7 @@ QUnit.asyncTest("Animate height toggle off (hide)", function(assert) {
 
 QUnit.asyncTest("Animate height toggle on (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -75,7 +75,7 @@ QUnit.asyncTest("Animate height toggle on (show)", function(assert) {
 
 QUnit.asyncTest("Animate opacity 0 (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have been triggered!");
@@ -88,7 +88,7 @@ QUnit.asyncTest("Animate opacity 0 (no event)", function(assert) {
            
 QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -104,7 +104,7 @@ QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
 
 QUnit.asyncTest("Animate opacity show (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -119,7 +119,7 @@ QUnit.asyncTest("Animate opacity show (show)", function(assert) {
 
 QUnit.asyncTest("Animate opacity toggle off (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -135,7 +135,7 @@ QUnit.asyncTest("Animate opacity toggle off (hide)", function(assert) {
 
 QUnit.asyncTest("Animate opacity toggle on (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -150,7 +150,7 @@ QUnit.asyncTest("Animate opacity toggle on (show)", function(assert) {
 
 QUnit.asyncTest("Animate opacity 0.3 (no event)", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have been triggered");

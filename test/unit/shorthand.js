@@ -1,6 +1,6 @@
 QUnit.test("hide Test (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -19,7 +19,7 @@ QUnit.test("hide Test (hide)", function(assert) {
 
 QUnit.test("hide invisible Test (no event)", function(assert) {
   expect(0);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(false, "Hide event shouldn't have triggered");
@@ -33,7 +33,7 @@ QUnit.test("hide invisible Test (no event)", function(assert) {
 
 QUnit.test("show Test (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -48,7 +48,7 @@ QUnit.test("show Test (show)", function(assert) {
 
 QUnit.test("show visible Test (no event)", function(assert) {
   expect(0);
-  $('<div></div>')
+  $('<div>Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -61,7 +61,7 @@ QUnit.test("show visible Test (no event)", function(assert) {
 
 QUnit.asyncTest("fadeOut Test (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -77,7 +77,7 @@ QUnit.asyncTest("fadeOut Test (hide)", function(assert) {
 
 QUnit.asyncTest("fadeOut invisible Test (no event)", function(assert) {
   expect(0);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
@@ -88,9 +88,9 @@ QUnit.asyncTest("fadeOut invisible Test (no event)", function(assert) {
     .fadeOut(start);
 });
 
-QUnit.test("fadeIn Test (show)", function(assert) {
+QUnit.asyncTest("fadeIn Test (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -100,12 +100,12 @@ QUnit.test("fadeIn Test (show)", function(assert) {
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
     })
-    .fadeIn();
+    .fadeIn(start);
 });
 
-QUnit.test("fadeIn visible Test (no event)", function(assert) {
+QUnit.asyncTest("fadeIn visible Test (no event)", function(assert) {
   expect(0);
-  $('<div></div>')
+  $('<div>Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -113,12 +113,12 @@ QUnit.test("fadeIn visible Test (no event)", function(assert) {
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
     })
-    .fadeIn();
+    .fadeIn(start);
 });
 
 QUnit.asyncTest("slideUp Test (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -134,7 +134,7 @@ QUnit.asyncTest("slideUp Test (hide)", function(assert) {
 
 QUnit.asyncTest("slideUp invisible Test (no event)", function(assert) {
   expect(0);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(false, "Hide event shouldn't have triggered");
@@ -145,9 +145,9 @@ QUnit.asyncTest("slideUp invisible Test (no event)", function(assert) {
     .slideUp(start);
 });
 
-QUnit.test("slideDown Test (show)", function(assert) {
+QUnit.asyncTest("slideDown Test (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -157,12 +157,12 @@ QUnit.test("slideDown Test (show)", function(assert) {
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
     })
-    .slideDown();
+    .slideDown(start);
 });
 
-QUnit.test("slideDown visible Test (no event)", function(assert) {
+QUnit.asyncTest("slideDown visible Test (no event)", function(assert) {
   expect(0);
-  $('<div></div>')
+  $('<div>Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(false, "Show event shouldn't have triggered");
@@ -170,12 +170,12 @@ QUnit.test("slideDown visible Test (no event)", function(assert) {
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
     })
-    .slideDown();
+    .slideDown(start);
 });
 
 QUnit.test("remove Test (hide)", function(assert) {
   expect(3);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -190,7 +190,7 @@ QUnit.test("remove Test (hide)", function(assert) {
 
 QUnit.test("remove invisible Test (unspecified behaviour)", function(assert) {
   expect(999);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .remove();
   ok(false, "What should remove do on invisible objects? Sending a hide event is misleading, but it is still removed...");

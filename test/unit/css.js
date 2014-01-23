@@ -1,6 +1,6 @@
 QUnit.test("CSS display none (hide)", function(assert) {
   expect(4);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
@@ -16,7 +16,7 @@ QUnit.test("CSS display none (hide)", function(assert) {
 
 QUnit.test("CSS display block (show)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -31,7 +31,7 @@ QUnit.test("CSS display block (show)", function(assert) {
 
 QUnit.test("CSS display inline-block (show); test showing (other)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -46,7 +46,7 @@ QUnit.test("CSS display inline-block (show); test showing (other)", function(ass
 
 QUnit.test("CSS display '' (show); test showing (reset display)", function(assert) {
   expect(3);
-  $('<div style="display: none;"></div>')
+  $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
@@ -61,7 +61,7 @@ QUnit.test("CSS display '' (show); test showing (reset display)", function(asser
 
 QUnit.test("CSS display block (no event); test other display case", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't be triggered");
@@ -74,7 +74,7 @@ QUnit.test("CSS display block (no event); test other display case", function(ass
 
 QUnit.test("CSS opacity 0 (no event); opacity != hide", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't be triggered");
@@ -87,7 +87,7 @@ QUnit.test("CSS opacity 0 (no event); opacity != hide", function(assert) {
 
 QUnit.test("CSS color green (no event); test other css case", function(assert) {
   expect(0);
-  $("<div></div>")
+  $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
