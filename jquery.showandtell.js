@@ -18,44 +18,52 @@
         
         //Overwrite with new function
         $.fn[event] = function() {
+            //Call old function
+            var result = old_function.apply(this, arguments);
+        
             //Trigger event
             this.trigger("hide",{
                 type: "action",
                 fatal: (event == "remove")
             });
             
-            //Call old function
-            return old_function.apply(this, arguments);
+            //Return
+            return result;
         };
     });
     
     var old_show = $.fn.show;
     
     $.fn.show = function() {
+        var result = old_show.apply(this, arguments);
+        
         this.trigger("show",{
             type: "action"
         });
         
-        return old_show.apply(this, arguments);
+        return result;
     };
     
     //jQuery set css properties
     var old_css = $.fn.css;
     
     $.fn.css = function() {
+        var was_hidden = $(this).is(":hidden");
+    
+        var result = old_css.apply(this, arguments);
+        
         //Case: display: none;
-        if(arguments[0] == "display" && !$(this).is(":hidden") && arguments[1] == "none")
+        if(!was_hidden && arguments[0] == "display" && arguments[1] == "none")
             $(this).trigger("hide",{
                 type: "css",
                 fatal: false
             });
             
-        if(arguments[0] == "display" && $(this).is(":hidden") && arguments[1] != "none")
+        if(was_hidden && arguments[0] == "display" && arguments[1] != "none")
             $(this).trigger("show",{
                 type: "css"
             });
-            
-        //Call old function
-        return old_css.apply(this, arguments);
+        
+        return result;
     };
 })(jQuery);
