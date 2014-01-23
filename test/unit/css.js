@@ -1,9 +1,10 @@
-QUnit.test("CSS display none; test display hide", function(assert) {
-  expect(3);
+QUnit.test("CSS display none (hide)", function(assert) {
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "css", "CSS change.");
       equal(e_args.fatal, false, "CSS change does not remove element");
     })
@@ -13,12 +14,13 @@ QUnit.test("CSS display none; test display hide", function(assert) {
     .css('display','none');
 });
 
-QUnit.test("CSS display block (show); test showing", function(assert) {
-  expect(2);
+QUnit.test("CSS display block (show)", function(assert) {
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "css", "CSS change.");
     })
     .bind('hide', function() {
@@ -28,11 +30,12 @@ QUnit.test("CSS display block (show); test showing", function(assert) {
 });
 
 QUnit.test("CSS display inline-block (show); test showing (other)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "css", "CSS change.");
     })
     .bind('hide', function() {
@@ -42,11 +45,12 @@ QUnit.test("CSS display inline-block (show); test showing (other)", function(ass
 });
 
 QUnit.test("CSS display '' (show); test showing (reset display)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "css", "CSS change.");
     })
     .bind('hide', function() {

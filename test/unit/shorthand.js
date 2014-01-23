@@ -1,12 +1,12 @@
 QUnit.test("hide Test (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
-      //Event triggered!
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       
-      //Check that action and fatality is contained correctly
+      //Check that action and fatality is reported correctly
       equal(e_args.type, "action", "hide() is an action");
       equal(e_args.fatal, false, "hide() is non-fatal (does not remove element)");
     })
@@ -32,11 +32,12 @@ QUnit.test("hide invisible Test (no event)", function(assert) {
 });
 
 QUnit.test("show Test (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "show() is an action");
     })
     .bind('hide', function() {
@@ -59,11 +60,12 @@ QUnit.test("show visible Test (no event)", function(assert) {
 });
 
 QUnit.asyncTest("fadeOut Test (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "fadeOut() is an action");
       equal(e_args.fatal, false, "fadeOut() does not destroy element");
     })
@@ -87,11 +89,12 @@ QUnit.asyncTest("fadeOut invisible Test (no event)", function(assert) {
 });
 
 QUnit.test("fadeIn Test (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "fadeIn() is an action");
     })
     .bind('hide', function() {
@@ -114,11 +117,12 @@ QUnit.test("fadeIn visible Test (no event)", function(assert) {
 });
 
 QUnit.asyncTest("slideUp Test (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "slideUp() is an action");
       equal(e_args.fatal, false, "slideUp() does not destroy element");
     })
@@ -142,11 +146,12 @@ QUnit.asyncTest("slideUp invisible Test (no event)", function(assert) {
 });
 
 QUnit.test("slideDown Test (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "slideDown() is an action");
     })
     .bind('hide', function() {

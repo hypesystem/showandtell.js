@@ -12,11 +12,12 @@ QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
 });
            
 QUnit.asyncTest("Animate height hide (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "height hide is an action");
       equal(e_args.fatal, false, "height hide does not destroy element");
     })
@@ -27,11 +28,12 @@ QUnit.asyncTest("Animate height hide (hide)", function(assert) {
 });
 
 QUnit.asyncTest("Animate height show (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "height show is an action");
     })
     .bind('hide', function(event, e_args) {
@@ -41,11 +43,12 @@ QUnit.asyncTest("Animate height show (show)", function(assert) {
 });
 
 QUnit.asyncTest("Animate height toggle off (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "height toggle off is an action");
       equal(e_args.fatal, false, "height toggle off does not destroy element");
     })
@@ -56,11 +59,12 @@ QUnit.asyncTest("Animate height toggle off (hide)", function(assert) {
 });
 
 QUnit.asyncTest("Animate height toggle on (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "height toggle on is an action");
     })
     .bind('hide', function() {
@@ -83,11 +87,12 @@ QUnit.asyncTest("Animate opacity 0 (no event)", function(assert) {
 });
            
 QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "opacity hide is an action");
       equal(e_args.fatal, false, "opacity hide does not destroy element");
     })
@@ -98,11 +103,12 @@ QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
 });
 
 QUnit.asyncTest("Animate opacity show (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "opacity show is an action");
     })
     .bind('hide', function() {
@@ -112,11 +118,12 @@ QUnit.asyncTest("Animate opacity show (show)", function(assert) {
 });
 
 QUnit.asyncTest("Animate opacity toggle off (hide)", function(assert) {
-  expect(3);
+  expect(4);
   $("<div></div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "opacity toggle off is an action");
       equal(e_args.fatal, false, "opacity toggle off does not destroy element");
     })
@@ -127,11 +134,12 @@ QUnit.asyncTest("Animate opacity toggle off (hide)", function(assert) {
 });
 
 QUnit.asyncTest("Animate opacity toggle on (show)", function(assert) {
-  expect(2);
+  expect(3);
   $('<div style="display: none;"></div>')
     .appendTo("#qunit-fixture")
     .bind('show', function(event, e_args) {
       ok(true, "Event triggered");
+      ok($(this).is(":visible"), "Element is visible");
       equal(e_args.type, "action", "opacity toggle on is an action");
     })
     .bind('hide', function() {
