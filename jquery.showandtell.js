@@ -13,27 +13,24 @@
  */
 (function ($) {
     //jQuery hide functions
-    $.each(['hide','remove'], function(i, event) {
-        var old_function = $.fn[event];
+    var old_hide = $.fn.hide;
+    
+    //Overwrite with new function
+    $.fn.hide = function() {
+        var was_hidden = $(this).is(":hidden");
+    
+        //Call old function
+        var result = old_hide.apply(this, arguments);
+    
+        //Trigger event
+        if(!was_hidden)
+            this.trigger("hide",{
+                type: "action"
+            });
         
-        //Overwrite with new function
-        $.fn[event] = function() {
-            var was_hidden = $(this).is(":hidden");
-        
-            //Call old function
-            var result = old_function.apply(this, arguments);
-        
-            //Trigger event
-            if(!was_hidden)
-                this.trigger("hide",{
-                    type: "action",
-                    fatal: (event == "remove")
-                });
-            
-            //Return
-            return result;
-        };
-    });
+        //Return
+        return result;
+    };
     
     var old_show = $.fn.show;
     
@@ -61,8 +58,7 @@
         //Case: display: none;
         if(!was_hidden && arguments[0] == "display" && arguments[1] == "none")
             $(this).trigger("hide",{
-                type: "css",
-                fatal: false
+                type: "css"
             });
             
         if(was_hidden && arguments[0] == "display" && arguments[1] != "none")
@@ -71,5 +67,17 @@
             });
         
         return result;
+    };
+    
+    var old_remove = $.fn.remove;
+        
+    $.fn.remove = function() {
+        //Remove has to trigger event before removing. After removal, there is no element to
+        //  trigger the event on.
+        this.trigger("remove",{
+            type: "action"
+        });
+
+        return old_remove.apply(this, arguments);
     };
 })(jQuery);

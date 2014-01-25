@@ -1,12 +1,11 @@
 QUnit.test("toggle off test (hide)", function(assert) {
-  expect(4);
+  expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "toggle() is an action");
-      equal(e_args.fatal, false, "toggle() does not destroy element");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -30,14 +29,13 @@ QUnit.test("toggle on test (show)", function(assert) {
 });
 
 QUnit.asyncTest("fadeToggle off test (hide)", function(assert) {
-  expect(4);
+  expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "fadeToggle() is an action");
-      equal(e_args.fatal, false, "fadeToggle() does not destroy element");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -61,14 +59,13 @@ QUnit.asyncTest("fadeToggle on test (show)", function(assert) {
 });
 
 QUnit.asyncTest("slideToggle off test (hide)", function(assert) {
-  expect(4);
+  expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "action", "slideToggle() is an action");
-      equal(e_args.fatal, false, "slideToggle() does not destroy element");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");

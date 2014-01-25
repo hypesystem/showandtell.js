@@ -1,12 +1,11 @@
 QUnit.test("CSS display none (hide)", function(assert) {
-  expect(4);
+  expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
     .bind('hide', function(event, e_args) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
       equal(e_args.type, "css", "CSS change.");
-      equal(e_args.fatal, false, "CSS change does not remove element");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't be triggered");
