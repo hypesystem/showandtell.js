@@ -61,7 +61,7 @@
             remove: {
                 //Remove has to trigger event before removing. After removal, there is no element to
                 //  trigger the event on.
-                pre: function(old_args) {
+                pre: function() {
                     this.trigger("remove",{
                         type: "action"
                     });
