@@ -13,80 +13,80 @@
  */
 (function ($) {
 
-    //Only register if not already registered 
+    function applyIfExistsOrNull(fun, self, args) {
+        return typeof fun !== "undefined" ? fun.apply(self, args) : null;
+    }
+
+    function proxy$Functions(functionProxies) {
+        $.each(functionProxies, function(old_function_name, proxy_settings) {
+            var old_function = $.fn[old_function_name];
+
+            $.fn[old_function_name] = function() {
+                var pre_result = applyIfExistsOrNull(proxy_settings.pre, this, arguments);
+
+                var result = old_function.apply(this, arguments);
+
+                var postArguments = [result, pre_result, arguments];
+                applyIfExistsOrNull(proxy_settings.post, this, postArguments);
+
+                return result;
+            }
+        });
+    }
+
+    function checkIfElementWasHidden() {
+        return $(this).is(":hidden");
+    };
+
+    //Only register if not already registered
     if(!$.showandtell) {
 
         //Indicate that showandtell has been registered.
         $.showandtell = true;
 
-        //jQuery hide functions
-        var old_hide = $.fn.hide;
+        proxy$Functions({
+            hide: {
+                pre: checkIfElementWasHidden,
+                post: function(result, elementWasHidden, old_args) {
+                    if(!elementWasHidden)
+                        this.trigger("hide",{
+                            type: "action"
+                        });
+                }
+            },
+            show: {
+                pre: checkIfElementWasHidden,
+                post: function(result, elementWasHidden, old_args) {
+                    if(elementWasHidden)
+                        this.trigger("show",{
+                            type: "action"
+                        });
+                }
+            },
+            remove: {
+                //Remove has to trigger event before removing. After removal, there is no element to
+                //  trigger the event on.
+                pre: function(old_args) {
+                    this.trigger("remove",{
+                        type: "action"
+                    });
+                }
+            },
+            css: {
+                pre: checkIfElementWasHidden,
+                post: function(result, elementWasHidden, old_args) {
+                    if(!elementWasHidden && old_args[0] == "display" && old_args[1] == "none")
+                        $(this).trigger("hide",{
+                            type: "css"
+                        });
 
-        //Overwrite with new function
-        $.fn.hide = function() {
-            var was_hidden = $(this).is(":hidden");
-
-            //Call old function
-            var result = old_hide.apply(this, arguments);
-
-            //Trigger event
-            if(!was_hidden)
-                this.trigger("hide",{
-                    type: "action"
-                });
-
-            //Return
-            return result;
-        };
-
-        var old_show = $.fn.show;
-
-        $.fn.show = function() {
-            var was_hidden = $(this).is(":hidden");
-
-            var result = old_show.apply(this, arguments);
-
-            if(was_hidden)
-                this.trigger("show",{
-                    type: "action"
-                });
-
-            return result;
-        };
-
-        //jQuery set css properties
-        var old_css = $.fn.css;
-
-        $.fn.css = function() {
-            var was_hidden = $(this).is(":hidden");
-
-            var result = old_css.apply(this, arguments);
-
-            //Case: display: none;
-            if(!was_hidden && arguments[0] == "display" && arguments[1] == "none")
-                $(this).trigger("hide",{
-                    type: "css"
-                });
-
-            if(was_hidden && arguments[0] == "display" && arguments[1] != "none")
-                $(this).trigger("show",{
-                    type: "css"
-                });
-
-            return result;
-        };
-
-        var old_remove = $.fn.remove;
-
-        $.fn.remove = function() {
-            //Remove has to trigger event before removing. After removal, there is no element to
-            //  trigger the event on.
-            this.trigger("remove",{
-                type: "action"
-            });
-
-            return old_remove.apply(this, arguments);
-        };
+                    if(elementWasHidden && old_args[0] == "display" && old_args[1] != "none")
+                        $(this).trigger("show",{
+                            type: "css"
+                        });
+                }
+            }
+        });
 
     }
 })(jQuery);
