@@ -13,7 +13,7 @@
  */
 (function ($) {
 
-    //Only register if not already registered
+    //Only register if not already registered 
     if(!$.showandtell) {
 
         //Indicate that showandtell has been registered.
