@@ -5,11 +5,6 @@
  * When a hide `h` is called, the event "hide" is triggered, with the additional parameter ["h"]. If it is
  * called as an action, the second parameter will be "action". If it is set as a CSS property it will be
  * "css".
- * TODO: Setting of the style attribute .style(...)
- * TODO: Class toggles: .addClass('hidden'), .toggleClass(...), etc.
- * TODO: Consider Mutation Observer https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
- * TODO: Figure out if http://weblog.west-wind.com/posts/2008/Sep/12/jQuery-CSS-Property-Monitoring-Plugin-updated
- *     is an alernative. (Project seems to be closed, maybe rewrite?)
  */
 (function ($) {
 
@@ -36,7 +31,7 @@
 
     function checkIfElementWasHidden() {
         return $(this).is(":hidden");
-    };
+    }
 
     //Only register if not already registered
     if(!$.showandtell) {
