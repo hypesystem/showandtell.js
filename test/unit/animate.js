@@ -1,3 +1,5 @@
+module("Animate");
+
 QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
   expect(0);
   $("<div>Hello</div>")

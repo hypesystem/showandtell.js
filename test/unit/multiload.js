@@ -1,3 +1,5 @@
+module("Multiload");
+
 QUnit.test("hide triggers only once", function(assert) {
   expect(1);
   $("<div>Hello</div>")

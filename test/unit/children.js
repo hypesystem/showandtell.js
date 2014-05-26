@@ -1,3 +1,5 @@
+module("Children");
+
 QUnit.test("Children have hide triggered on hide", function() {
     expect(2);
     var $parent = $('<div id="parent"><div id="child">Hello</div></div>').appendTo("#qunit-fixture");
