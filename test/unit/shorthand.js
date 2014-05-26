@@ -1,3 +1,5 @@
+module("Shorthand");
+
 QUnit.test("hide Test (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")

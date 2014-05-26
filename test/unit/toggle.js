@@ -1,3 +1,5 @@
+module("Toggle");
+
 QUnit.test("toggle off test (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
