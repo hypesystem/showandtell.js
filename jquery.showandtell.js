@@ -44,7 +44,7 @@
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden)
-                        this.trigger("hide",{
+                        this.triggerHandler("hide",{
                             type: "action"
                         });
                 }
@@ -53,7 +53,7 @@
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(elementWasHidden)
-                        this.trigger("show",{
+                        this.triggerHandler("show",{
                             type: "action"
                         });
                 }
@@ -62,7 +62,7 @@
                 //Remove has to trigger event before removing. After removal, there is no element to
                 //  trigger the event on.
                 pre: function() {
-                    this.trigger("remove",{
+                    this.triggerHandler("remove",{
                         type: "action"
                     });
                 }
@@ -71,12 +71,12 @@
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden && old_args[0] == "display" && old_args[1] == "none")
-                        $(this).trigger("hide",{
+                        $(this).triggerHandler("hide",{
                             type: "css"
                         });
 
                     if(elementWasHidden && old_args[0] == "display" && old_args[1] != "none")
-                        $(this).trigger("show",{
+                        $(this).triggerHandler("show",{
                             type: "css"
                         });
                 }
