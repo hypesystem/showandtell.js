@@ -17,10 +17,10 @@ QUnit.asyncTest("Animate height hide (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
-      equal(e_args.type, "action", "height hide is an action");
+      equal(event.reason, "hide", "height hide is an action");
     })
     .bind('show', function(event, e_args) {
       ok(false, "Show event shouldn't have triggered");
@@ -32,10 +32,10 @@ QUnit.asyncTest("Animate height show (show)", function(assert) {
   expect(3);
   $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
-    .bind('show', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":visible"), "Element is visible");
-      equal(e_args.type, "action", "height show is an action");
+      equal(event.reason, "show", "height show is an action");
     })
     .bind('hide', function(event, e_args) {
       ok(false, "Hide event shouldn't have triggered");
@@ -47,10 +47,10 @@ QUnit.asyncTest("Animate height toggle off (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
-      equal(e_args.type, "action", "height toggle off is an action");
+      equal(event.reason, "hide", "height toggle off is an action");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -62,10 +62,10 @@ QUnit.asyncTest("Animate height toggle on (show)", function(assert) {
   expect(3);
   $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
-    .bind('show', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":visible"), "Element is visible");
-      equal(e_args.type, "action", "height toggle on is an action");
+      equal(event.reason, "show", "height toggle on is an action");
     })
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
@@ -90,10 +90,10 @@ QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
-      equal(e_args.type, "action", "opacity hide is an action");
+      equal(event.reason, "hide", "opacity hide is an action");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have been triggered");
@@ -105,10 +105,10 @@ QUnit.asyncTest("Animate opacity show (show)", function(assert) {
   expect(3);
   $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
-    .bind('show', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":visible"), "Element is visible");
-      equal(e_args.type, "action", "opacity show is an action");
+      equal(event.reason, "show", "opacity show is an action");
     })
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
@@ -120,10 +120,10 @@ QUnit.asyncTest("Animate opacity toggle off (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
-    .bind('hide', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
-      equal(e_args.type, "action", "opacity toggle off is an action");
+      equal(event.reason, "hide", "opacity toggle off is an action");
     })
     .bind('show', function() {
       ok(false, "Show event shouldn't have triggered");
@@ -135,10 +135,10 @@ QUnit.asyncTest("Animate opacity toggle on (show)", function(assert) {
   expect(3);
   $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
-    .bind('show', function(event, e_args) {
+    .bind('showandtell', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":visible"), "Element is visible");
-      equal(e_args.type, "action", "opacity toggle on is an action");
+      equal(event.reason, "show", "opacity toggle on is an action");
     })
     .bind('hide', function() {
       ok(false, "Hide event shouldn't have triggered");
