@@ -2,9 +2,10 @@
  * jquery.hide-event.js
  * Currently supported hides: hide, fadeOut, slideUp, remove, toggle, fadeToggle, slideToggle,
  *     css (display), animate (height: hide, opacity: hide).
- * When a hide `h` is called, the event "hide" is triggered, with the additional parameter ["h"]. If it is
- * called as an action, the second parameter will be "action". If it is set as a CSS property it will be
- * "css".
+ *
+ * Examples:
+ *  .hide() is called -> event "showandtell" is triggered with event data "reason" = "hide"
+ *  .css("display", "none") is called -> event "showandtell" is triggered with event data "reason" = "cssHide"
  */
 (function ($) {
 
@@ -44,41 +45,31 @@
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden)
-                        this.triggerHandler("hide",{
-                            type: "action"
-                        });
+                        this.triggerHandler({type: "showandtell", reason: "hide"});
                 }
             },
             show: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(elementWasHidden)
-                        this.triggerHandler("show",{
-                            type: "action"
-                        });
+                        this.triggerHandler({type: "showandtell", reason: "show"});
                 }
             },
             remove: {
                 //Remove has to trigger event before removing. After removal, there is no element to
                 //  trigger the event on.
                 pre: function() {
-                    this.triggerHandler("remove",{
-                        type: "action"
-                    });
+                    this.triggerHandler({type: "showandtell", reason: "remove"});
                 }
             },
             css: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden && old_args[0] == "display" && old_args[1] == "none")
-                        $(this).triggerHandler("hide",{
-                            type: "css"
-                        });
+                        $(this).triggerHandler({type: "showandtell", reason: "cssHide"});
 
                     if(elementWasHidden && old_args[0] == "display" && old_args[1] != "none")
-                        $(this).triggerHandler("show",{
-                            type: "css"
-                        });
+                        $(this).triggerHandler({type: "showandtell", reason: "cssShow"});
                 }
             }
         });
