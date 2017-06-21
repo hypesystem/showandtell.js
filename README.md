@@ -9,7 +9,7 @@ There are three events supported by this library: `hide`, `show`, and `remove`.
 
 Listen on an event:
 
-    $("#myElement").bind("hide", function() {
+    $("#myElement").bind("showandtell.hide", function() {
         alert("hide triggered");
     }
 

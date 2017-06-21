@@ -4,8 +4,8 @@
  *     css (display), animate (height: hide, opacity: hide).
  *
  * Examples:
- *  .hide() is called -> event "showandtell" is triggered with event data "reason" = "hide"
- *  .css("display", "none") is called -> event "showandtell" is triggered with event data "reason" = "cssHide"
+ *  .hide() is called -> event "showandtell.hide" is triggered
+ *  .css("display", "none") is called -> event "showandtell.cssHide" is triggered
  */
 (function ($) {
 
