@@ -4,8 +4,8 @@ QUnit.test("hide triggers only once", function(assert) {
   expect(1);
   $("<div>Hello</div>")
     .appendTo("#qunit-fixture")
-    .bind('showandtell', function(event) {
-      if (event.reason == "hide")
+    .bind('showandtell.hide', function(event) {
+      if (event.namespace == "hide")
         ok(true, "Hide event triggered");
     })
     .hide();
@@ -15,8 +15,8 @@ QUnit.test("show triggers only once", function(assert) {
   expect(1);
   $('<div style="display: none;">Hello</div>')
     .appendTo("#qunit-fixture")
-    .bind('showandtell', function(event) {
-      if (event.reason == "show")
+    .bind('showandtell.show', function(event) {
+      if (event.namespace == "show")
       {
         //Make sure show event does not trigger!
         ok(true, "Show event triggered");
@@ -29,8 +29,8 @@ QUnit.test("remove triggers only once", function(assert) {
     expect(1);
     $('<div>Hello</div>')
         .appendTo("#qunit-fixture")
-        .bind('showandtell', function(event) {
-          if (event.reason == "remove")
+        .bind('showandtell.remove', function(event) {
+          if (event.namespace == "remove")
           {
             //Make sure remove event does not trigger!
             ok(true, "Remove event triggered");
