@@ -4,8 +4,8 @@
  *     css (display), animate (height: hide, opacity: hide).
  *
  * Examples:
- *  .hide() is called -> event "showandtell" is triggered with event data "reason" = "hide"
- *  .css("display", "none") is called -> event "showandtell" is triggered with event data "reason" = "cssHide"
+ *  .hide() is called -> event "showandtell.hide" is triggered
+ *  .css("display", "none") is called -> event "showandtell.cssHide" is triggered
  */
 (function ($) {
 
@@ -45,31 +45,31 @@
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden)
-                        this.triggerHandler({type: "showandtell", reason: "hide"});
+                        this.triggerHandler("showandtell.hide");
                 }
             },
             show: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(elementWasHidden)
-                        this.triggerHandler({type: "showandtell", reason: "show"});
+                        this.triggerHandler("showandtell.show");
                 }
             },
             remove: {
                 //Remove has to trigger event before removing. After removal, there is no element to
                 //  trigger the event on.
                 pre: function() {
-                    this.triggerHandler({type: "showandtell", reason: "remove"});
+                    this.triggerHandler("showandtell.remove");
                 }
             },
             css: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
                     if(!elementWasHidden && old_args[0] == "display" && old_args[1] == "none")
-                        $(this).triggerHandler({type: "showandtell", reason: "cssHide"});
+                        $(this).triggerHandler("showandtell.cssHide");
 
                     if(elementWasHidden && old_args[0] == "display" && old_args[1] != "none")
-                        $(this).triggerHandler({type: "showandtell", reason: "cssShow"});
+                        $(this).triggerHandler("showandtell.cssShow");
                 }
             }
         });
