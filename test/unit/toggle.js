@@ -1,4 +1,4 @@
-module("Toggle");
+QUnit.module("Toggle");
 
 QUnit.test("toggle off test (hide)", function(assert) {
   expect(3);

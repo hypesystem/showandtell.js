@@ -1,4 +1,4 @@
-module("CSS");
+QUnit.module("CSS");
 
 QUnit.test("CSS display none (hide)", function(assert) {
   expect(3);

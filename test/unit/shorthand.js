@@ -1,4 +1,4 @@
-module("Shorthand");
+QUnit.module("Shorthand");
 
 QUnit.test("hide Test (hide)", function(assert) {
   expect(3);
@@ -7,7 +7,7 @@ QUnit.test("hide Test (hide)", function(assert) {
     .bind('showandtell.hide', function(event) {
       ok(true, "Event triggered");
       ok($(this).is(":hidden"), "Element is hidden");
-      
+
       //Check that action and fatality is reported correctly
       equal(event.namespace, "hide", "hide() is an action");
     })

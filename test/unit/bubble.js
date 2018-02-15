@@ -1,4 +1,5 @@
-module("Bubbling");
+QUnit.module("Bubbling");
+
 QUnit.test("Remove triggering does not bubble up", function(assert) {
   expect(1);
   $("<div class='outer'>Outer <div class='inner'>Inner</div></div>")

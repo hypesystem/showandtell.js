@@ -1,4 +1,4 @@
-module("Multiload");
+QUnit.module("Multiload");
 
 QUnit.test("hide triggers only once", function(assert) {
   expect(1);

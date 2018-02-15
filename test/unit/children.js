@@ -1,4 +1,4 @@
-module("Children");
+QUnit.module("Children");
 
 QUnit.test("Children have hide triggered on hide", function() {
     expect(2);

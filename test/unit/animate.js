@@ -1,4 +1,4 @@
-module("Animate");
+QUnit.module("Animate");
 
 QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
   expect(0);
@@ -14,7 +14,7 @@ QUnit.asyncTest("Animate height 0 (no event)", function(assert) {
     })
     .animate({ height: 0 }, start);
 });
-           
+
 QUnit.asyncTest("Animate height hide (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
@@ -87,7 +87,7 @@ QUnit.asyncTest("Animate opacity 0 (no event)", function(assert) {
     })
     .animate({ opacity: 0 }, start);
 });
-           
+
 QUnit.asyncTest("Animate opacity hide (hide)", function(assert) {
   expect(3);
   $("<div>Hello</div>")
