@@ -31,7 +31,7 @@
     }
 
     function checkIfElementWasHidden() {
-        return $(this).is(":hidden");
+        return $(this).map(function() { return $(this).is(":hidden"); });
     }
 
     //Only register if not already registered
@@ -44,32 +44,43 @@
             hide: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
-                    if(!elementWasHidden)
-                        this.triggerHandler("showandtell.hide");
+                    $(this)
+                        .filter(function(idx) { return ! elementWasHidden[idx]; })
+                        .each(function() { $(this).triggerHandler("showandtell.hide"); });
                 }
             },
             show: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
-                    if(elementWasHidden)
-                        this.triggerHandler("showandtell.show");
+                    $(this)
+                        .filter(function(idx) { return elementWasHidden[idx]; })
+                        .each(function() { $(this).triggerHandler("showandtell.show"); });
                 }
             },
             remove: {
                 //Remove has to trigger event before removing. After removal, there is no element to
                 //  trigger the event on.
                 pre: function() {
-                    this.triggerHandler("showandtell.remove");
+                    $(this)
+                        .each(function() { $(this).triggerHandler("showandtell.remove"); });
                 }
             },
             css: {
                 pre: checkIfElementWasHidden,
                 post: function(result, elementWasHidden, old_args) {
-                    if(!elementWasHidden && old_args[0] == "display" && old_args[1] == "none")
-                        $(this).triggerHandler("showandtell.cssHide");
+                    $(this)
+                        .filter(function(idx) {
+                            return ! elementWasHidden[idx] && old_args[0] == "display" && old_args[1] == "none";
+                        }).each(function() {
+                            $(this).triggerHandler("showandtell.cssHide");
+                        });
 
-                    if(elementWasHidden && old_args[0] == "display" && old_args[1] != "none")
-                        $(this).triggerHandler("showandtell.cssShow");
+                    $(this)
+                        .filter(function(idx) {
+                            return elementWasHidden[idx] && old_args[0] == "display" && old_args[1] != "none";
+                        }).each(function() {
+                            $(this).triggerHandler("showandtell.cssShow");
+                        });
                 }
             }
         });
