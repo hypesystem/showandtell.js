@@ -16,7 +16,6 @@
     "uglify-js": "^3.3.11"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "uglifyjs --compress --mangle --output build.js -- jquery.showandtell.js"
   },
   "repository": {
