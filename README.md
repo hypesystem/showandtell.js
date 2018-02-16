@@ -30,6 +30,21 @@ to pass, and that new features are tested :)
 
 If you find an issue that you don't want to fix, please use the GitHub issue system. Thanks!
 
+Contributors
+------------
+
+Contributors are thanked here in public! Contributing can be with code or documentation, you decide!
+
+Thanks a lot to the following individuals:
+
+- [virustrinity](https://github.com/ViRuSTriNiTy) for helping with better namespacing, so the events
+  emitted by showandtell do not clash with other jQuery plugins.
+  [#10](https://github.com/hypesystem/showandtell.js/pull/10)
+  [#12](https://github.com/hypesystem/showandtell.js/pull/12)
+- [Paul Biron](https://github.com/pbiron) for contributing support for triggering events when hiding
+  several elements with a single selector (e.g. `$("#div1, #div2").hide();`).
+  [#15](https://github.com/hypesystem/showandtell.js/pull/15)
+
 Background
 ==========
 
