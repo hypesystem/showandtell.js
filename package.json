@@ -1,0 +1,32 @@
+{
+  "name": "jquery.showandtell.js",
+  "version": "2.1.0",
+  "description": "Trigger an event when an element is being dynamically hidden or shown.",
+  "main": "jquery.showandtell.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jquery": "^1.12.4",
+    "jsdom": "^11.6.2",
+    "qunit-cli": "^0.2.0",
+    "qunit": "^2.5.0"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "uglifyjs --compress --mangle --output build.js -- jquery.showandtell.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypesystem/showandtell.js.git"
+  },
+  "author": "Niels Abildgaard <me@hypesystem.dk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hypesystem/showandtell.js/issues"
+  },
+  "homepage": "https://github.com/hypesystem/showandtell.js#readme"
+}
